@@ -99,6 +99,6 @@ public class GoodsController {
 	
 	@RequestMapping("test")
 	public void test1() {
-		
+		System.out.println("def");
 	}
 }
