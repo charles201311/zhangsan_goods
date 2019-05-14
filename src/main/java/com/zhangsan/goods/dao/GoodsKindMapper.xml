@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhangsan.goods.dao.GoodsKindMapper" >
+  <resultMap id="BaseResultMap" type="com.zhangsan.goods.domain.GoodsKind" >
+    <id column="kid" property="kid" jdbcType="INTEGER" />
+    <result column="kname" property="kname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    kid, kname
+  </sql>
+  
+  <select id="selectGoodsKindList" resultType="map">
+  select * from tb_goodskind
+  
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goodskind
+    where kid = #{kid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_goodskind
+    where kid = #{kid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhangsan.goods.domain.GoodsKind" >
+    insert into tb_goodskind (kid, kname)
+    values (#{kid,jdbcType=INTEGER}, #{kname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhangsan.goods.domain.GoodsKind" >
+    insert into tb_goodskind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="kid != null" >
+        kid,
+      </if>
+      <if test="kname != null" >
+        kname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="kid != null" >
+        #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="kname != null" >
+        #{kname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhangsan.goods.domain.GoodsKind" >
+    update tb_goodskind
+    <set >
+      <if test="kname != null" >
+        kname = #{kname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhangsan.goods.domain.GoodsKind" >
+    update tb_goodskind
+    set kname = #{kname,jdbcType=VARCHAR}
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+</mapper>
