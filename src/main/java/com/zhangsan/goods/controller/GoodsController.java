@@ -96,4 +96,9 @@ public class GoodsController {
 		return goodsService.selectGoodsKindList();
 
 	}
+	
+	@RequestMapping("test")
+	public void test1() {
+		
+	}
 }
